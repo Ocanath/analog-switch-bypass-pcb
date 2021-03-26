@@ -1,0 +1,467 @@
+<html>
+<head>
+<META http-equiv="Content-Type" content="text/html">
+<style type="text/css">
+		h1, h2, h3, h4, h5, h6 {
+			font-family : segoe ui;
+			color : black;
+			background-color : #EDE7D9;
+			padding: 0.3em;
+		}
+
+		h1 {
+			font-size: 1.2em;
+		}		
+
+		h2 {
+			font-size: 1.2em;
+		}
+
+		body {
+			font-family : segoe ui;
+		}
+
+		td, th {
+			padding: 0.5em;
+			text-align : left;
+			width: 10em;
+		}
+		th {
+			background-color : #EEEEEE;
+
+		}
+		th.column1, td.column1 {
+			text-align: left;
+			width : auto;
+		}
+		table {
+			width : 100%;
+			font-size: 0.9em;
+		}
+
+		.DRC_summary_header {
+			padding-bottom : 0.1em;
+			border : 0px solid black;
+			width: 100%;
+			align: left;
+		}
+
+		.DRC_summary_header_col1,
+		.DRC_summary_header_col2, 
+		.DRC_summary_header_col3 {
+			color : black;
+			font-size:100%;
+			padding : 0em;
+			padding-top : 0.2em;
+			padding-bottom 0.2em;
+			border : 0px solid black;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.DRC_summary_header_col1 {
+			font-weight: bold;
+			width: 8em;
+		}
+
+		.DRC_summary_header_col2 {
+			width: 0.1em;
+		
+		}
+
+		.DRC_summary_header_col3 {
+			width : auto;
+		}
+
+		.header_holder {
+		    Width = 100%;
+		    border = 0px solid green;
+		    padding = 0;
+		}
+
+
+		.front_matter, .front_matter_column1, .front_matter_column2, .front_matter_column3
+		{
+			left : 0;
+			top : 0;
+			padding: 0em;
+			padding-top : 0.1em;
+			border : 0px solid black;
+			width : 100%;
+			vertical-align: top;
+			text-align: left;
+		}
+
+		.front_matter_column1 {
+			width : 8em;
+			font-weight: bold;
+		}
+
+		.front_matter_column2 {
+			width: 0.1em;
+		}
+
+		.front_matter_column3 {
+			width : auto;
+		}
+
+		.total_column1, .total_column {
+			font-weight : bold;
+		}
+		.total_column1 {
+			text-align : left;
+		}
+		.warning, .error {
+			color : red;
+			font-weight : bold;
+		}
+		tr.onmouseout_odd {
+			background-color : #white;
+		}
+		tr.onmouseout_even { 
+			background-color : #FAFAFA;
+		}
+		tr.onmouseover_odd, tr.onmouseover_even { 
+			background-color : #EEEEEE;
+		} 
+		a:link, a:visited, .q a:link,.q a:active,.q {
+			color: #21489e; 
+		}
+		a:link.callback, a:visited.callback { 
+			color: #21489e;
+		}
+		a:link.customize, a:visited.customize {
+			color: #C0C0C0;
+			position: absolute; 
+			right: 10px;
+		}	
+		p.contents_level1 {
+			font-weight : bold;
+			font-size : 110%;
+			margin : 0.5em;
+		}
+		p.contents_level2 {
+			position : relative;
+			left : 20px;
+			margin : 0.5em;
+		}
+	</style><script type="text/javascript">
+		function coordToMils(coord) {
+			var number = coord / 10000;
+			
+			if (number != number.toFixed(3))
+				number = number.toFixed(3);
+
+			return number + 'mil'
+		}
+
+		function coordToMM(coord) {
+			var number = 0.0254 * coord / 10000;
+			
+			if (number != number.toFixed(4))
+				number = number.toFixed(4);
+			
+			return number + 'mm'
+		}
+	
+		function convertCoord(coordNode, units) {
+			for (var i = 0; i < coordNode.childNodes.length; i++) {
+				coordNode.removeChild(coordNode.childNodes[i]);
+			}
+
+			var coord = coordNode.getAttribute('value');
+			if (coord != null) {
+				if (units == 'mm') {
+					textNode = document.createTextNode(coordToMM(coord));
+					coordNode.appendChild(textNode);
+				} else if (units == 'mil') {
+					textNode = document.createTextNode(coordToMils(coord));		
+					coordNode.appendChild(textNode);	
+				}
+			}
+		}
+	
+		function convertUnits(unitNode, units) {
+			for (var i = 0; i < unitNode.childNodes.length; i++) {
+				unitNode.removeChild(unitNode.childNodes[i]);		
+			}
+		
+			textNode = document.createTextNode(units); 
+			unitNode.appendChild(textNode);
+		}
+	
+		function changeUnits(radio_input, units) {
+			if (radio_input.checked) {
+			
+				var elements = document.getElementsByName('coordinate');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertCoord(elements[i], units);
+					}
+				}
+	
+				var elements = document.getElementsByName('units');
+				if (elements) {
+					for (var i = 0; i < elements.length; i++) {
+						convertUnits(elements[i], units);
+					}
+				}
+			}
+		}
+	</script><title>Design Rule Verification Report</title>
+</head>
+<body onload=""><img ALT="Altium" src="
+			file://C:\Users\Public\Documents\Altium\AD20\Templates\AD_logo.png
+		"><h1>Design Rule Verification Report</h1>
+<table class="header_holder">
+<td class="column1">
+<table class="front_matter">
+<tr class="front_matter">
+<td class="front_matter_column1">Date:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">3/25/2021</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">5:18:13 PM</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Elapsed Time:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3">00:00:01</td>
+</tr>
+<tr class="front_matter">
+<td class="front_matter_column1">Filename:</td>
+<td class="front_matter_column2"></td>
+<td class="front_matter_column3"><a href="file:///C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc" class="file"><acronym title="C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc">C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc</acronym></a></td>
+</tr>
+</table>
+</td>
+<td class="column2">
+<table class="DRC_summary_header">
+<tr>
+<td class="DRC_summary_header_col1">Warnings:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3">0</td></tr>
+<tr>
+<td class="DRC_summary_header_col1">Rule Violations:</td>
+<td class="DRC_summary_header_col2"></td>
+<td class="DRC_summary_header_col3" style="color : red">45</td></tr>
+</table>
+</td>
+</table><a name="IDSFVQ34KUGLA5CPWMP2AS1UKP4PDUVXJKMC4GSLFOURSQYSQPIBKF"><h2>Summary</h2></a><table>
+<tr>
+<th class="column1">Warnings</th>
+<th class="column2">Count</th>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">0</td>
+</tr>
+</table><br><table>
+<tr>
+<th class="column1">Rule Violations</th>
+<th class="column2">Count</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDDWM5EGVYRXQRBMW2HNACP41B2KSMB5GWLXJL0JBPT4QLD35ACCHK">Clearance Constraint (Gap=0.152mm) (All),(All)</a></td>
+<td class="column2">39</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDF0QPLNRCVVY3DE2L0AFCRNGRJOQM3PJQEMHGGILYBDGQKGQXGDMH">Short-Circuit Constraint (Allowed=No) (All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID0SNDPRPNRLPEBZUAE1SQBJX3PIC21CPXBJ1XLTLUG2CVMJNEIH2K">Un-Routed Net Constraint ( (All) )</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDRJQLVTS4OF2UNP0NRBVAC1USMEWOBOJ3BE3OBXJHLZKR4C1CNYDO">Modified Polygon (Allow modified: No), (Allow shelved: No)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#ID01XYIDE4LE1UPEWCLNGT0NHGXISBCV2U5ZQ35POI1EM52VHZB0YL">Width Constraint (Min=0.152mm) (Max=5.08mm) (Preferred=0.254mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIUJWO1C2G41AL15MEMLEQJ5FIFQ2CIDYH2FOHKC2QKX4MUDWUPFD">Power Plane Connect Rule(Relief Connect )(Expansion=0.508mm) (Conductor Width=0.254mm) (Air Gap=0.254mm) (Entries=4) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDBIR24TEP5OHSPXBDDK0XYAMV5O32KOKL2T1VKUF43GPYBNNRB1LB">Hole Size Constraint (Min=0.025mm) (Max=2.54mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#ID3WQJOOXMQPMHG4BPY0QQYD0UULKK4GNUPV1C55MTAGWCZHOV2M1J">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</a></td>
+<td class="column2">6</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDPWZ143TIPHRJKMIAC1JOROSMWGFXRK05V3BESVO0BP2P4X0HQGPM">Minimum Solder Mask Sliver (Gap=0.254mm) (Disabled)(All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDGVRDBGC1LZJSHUKQUDSL1TFHYHCP1322545E3POGDL00MGMCAAUB">Silk To Solder Mask (Clearance=0.254mm) (Disabled)(IsPad),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDKDPXUHSWKIIYILXETBYKVV0YYKTLI3TKAGSXRVW2TSJVIDOQ5MN">Silk to Silk (Clearance=0.254mm) (Disabled)(All),(All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="#IDIRFBQNXTM1UIKYQJVFKCFQCIYLZA4JMWXCF40DODSQGWYUMWR4T">Net Antennae (Tolerance=0mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="#IDFZS2APAEXU4NJHEDT3HDHJP3TGBCR4XNYU5INMOFCRQB4FO04Y3M">Height Constraint (Min=0mm) (Max=25.4mm) (Prefered=12.7mm) (All)</a></td>
+<td class="column2">0</td>
+</tr>
+<tr>
+<td style="font-weight : bold; text-align : right" class="column1">Total</td>
+<td style="font-weight : bold" class="column2">45</td>
+</tr>
+</table><br><a name="IDDWM5EGVYRXQRBMW2HNACP41B2KSMB5GWLXJL0JBPT4QLD35ACCHK"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Clearance Constraint (Gap=0.152mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.659mil|Location2.X=2985.909mil|Location1.Y=2982.208mil|Location2.Y=2989.458mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2978.659mil|Location2.X=2985.909mil|Location1.Y=2982.208mil|Location2.Y=2989.458mil|Absolute=True">Clearance Constraint: (0.094mm &lt; 0.152mm) Between Arc (0.409mm,0.691mm) on Top Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2920.728mil|Location2.X=2925.728mil|Location1.Y=2915.216mil|Location2.Y=2920.216mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2920.728mil|Location2.X=2925.728mil|Location1.Y=2915.216mil|Location2.Y=2920.216mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-1(-0.75mm,-0.725mm) on Bottom Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2906.358mil|Location2.X=2911.358mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2906.358mil|Location2.X=2911.358mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-10(-0.975mm,0mm) on Bottom Layer And Track (-1.15mm,-0.9mm)(-1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-2(-0.25mm,-0.725mm) on Bottom Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.098mil|Location2.X=2965.098mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.098mil|Location2.X=2965.098mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-3(0.25mm,-0.725mm) on Bottom Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2915.216mil|Location2.Y=2920.216mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2915.216mil|Location2.Y=2920.216mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-4(0.75mm,-0.725mm) on Bottom Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2994.153mil|Location2.X=2999.153mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2994.153mil|Location2.X=2999.153mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-5(0.975mm,0mm) on Bottom Layer And Track (1.15mm,-0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2985.295mil|Location2.Y=2990.295mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2985.295mil|Location2.Y=2990.295mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-6(0.75mm,0.725mm) on Bottom Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.098mil|Location2.X=2965.098mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.098mil|Location2.X=2965.098mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-7(0.25mm,0.725mm) on Bottom Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-8(-0.25mm,0.725mm) on Bottom Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2920.728mil|Location2.X=2925.728mil|Location1.Y=2985.295mil|Location2.Y=2990.295mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2920.728mil|Location2.X=2925.728mil|Location1.Y=2985.295mil|Location2.Y=2990.295mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Pad U1-9(-0.75mm,0.725mm) on Bottom Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2929.446mil|Location2.X=2936.696mil|Location1.Y=2913.698mil|Location2.Y=2920.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2929.446mil|Location2.X=2936.696mil|Location1.Y=2913.698mil|Location2.Y=2920.948mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Region (0 hole(s)) Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2968.816mil|Location2.X=2976.066mil|Location1.Y=2984.564mil|Location2.Y=2991.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2968.816mil|Location2.X=2976.066mil|Location1.Y=2984.564mil|Location2.Y=2991.814mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Region (0 hole(s)) Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2968.816mil|Location2.X=2976.066mil|Location1.Y=2913.698mil|Location2.Y=2920.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2968.816mil|Location2.X=2976.066mil|Location1.Y=2913.698mil|Location2.Y=2920.948mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Region (0 hole(s)) Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2949.131mil|Location2.X=2956.381mil|Location1.Y=2913.698mil|Location2.Y=2920.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2949.131mil|Location2.X=2956.381mil|Location1.Y=2913.698mil|Location2.Y=2920.948mil|Absolute=True">Clearance Constraint: (0.1mm &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Region (0 hole(s)) Multi-Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2995.145mil|Location2.X=3000.145mil|Location1.Y=2942.382mil|Location2.Y=2947.382mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2995.145mil|Location2.X=3000.145mil|Location1.Y=2942.382mil|Location2.Y=2947.382mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (1.15mm,-0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2952.224mil|Location2.X=2957.224mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2952.224mil|Location2.X=2957.224mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2971.91mil|Location2.X=2976.91mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2971.91mil|Location2.X=2976.91mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.854mil|Location2.X=2917.854mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.854mil|Location2.X=2917.854mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2932.539mil|Location2.X=2937.539mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2932.539mil|Location2.X=2937.539mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2971.91mil|Location2.X=2976.91mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2971.91mil|Location2.X=2976.91mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.854mil|Location2.X=2917.854mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2912.854mil|Location2.X=2917.854mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2932.539mil|Location2.X=2937.539mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2932.539mil|Location2.X=2937.539mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2952.224mil|Location2.X=2957.224mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2952.224mil|Location2.X=2957.224mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.98mil|Location2.X=2909.98mil|Location1.Y=2946.319mil|Location2.Y=2951.319mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.98mil|Location2.X=2909.98mil|Location1.Y=2946.319mil|Location2.Y=2951.319mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Region (0 hole(s)) Multi-Layer And Track (-1.15mm,-0.9mm)(-1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-0.25mm,-0.9mm)(-0.25mm,-0.5mm) on Top Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (0.75mm,0.691mm)(0.75mm,0.9mm) on Top Layer And Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (0.75mm,-0.9mm)(0.75mm,-0.591mm) on Top Layer And Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.98mil|Location2.X=2909.98mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.98mil|Location2.X=2909.98mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,-0.9mm)(-1.15mm,0.9mm) on Keep-Out Layer And Track (-1.15mm,0mm)(-0.75mm,0mm) on Top Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.098mil|Location2.X=2965.098mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.098mil|Location2.X=2965.098mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer And Via (0.25mm,0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer And Via (-0.25mm,0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.098mil|Location2.X=2965.098mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2960.098mil|Location2.X=2965.098mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer And Via (0.25mm,-0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2940.413mil|Location2.X=2945.413mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer And Via (-0.25mm,-0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer And Via (0.75mm,0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2920.728mil|Location2.X=2925.728mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2920.728mil|Location2.X=2925.728mil|Location1.Y=2985.689mil|Location2.Y=2990.689mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,0.9mm)(1.15mm,0.9mm) on Keep-Out Layer And Via (-0.75mm,0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2979.784mil|Location2.X=2984.784mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer And Via (0.75mm,-0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2920.728mil|Location2.X=2925.728mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2920.728mil|Location2.X=2925.728mil|Location1.Y=2914.823mil|Location2.Y=2919.823mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,-0.9mm)(1.15mm,-0.9mm) on Keep-Out Layer And Via (-0.75mm,-0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2995.532mil|Location2.X=3000.532mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2995.532mil|Location2.X=3000.532mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (1.15mm,-0.9mm)(1.15mm,0.9mm) on Keep-Out Layer And Via (1.15mm,0mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.98mil|Location2.X=2909.98mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2904.98mil|Location2.X=2909.98mil|Location1.Y=2950.256mil|Location2.Y=2955.256mil|Absolute=True">Clearance Constraint: (Collision &lt; 0.152mm) Between Track (-1.15mm,-0.9mm)(-1.15mm,0.9mm) on Keep-Out Layer And Via (-1.15mm,0mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br><a name="ID3WQJOOXMQPMHG4BPY0QQYD0UULKK4GNUPV1C55MTAGWCZHOV2M1J"><table>
+<tr>
+<th style="text-align : left" colspan="1" class="rule">Hole To Hole Clearance (Gap=0.254mm) (All),(All)</th>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2947.131mil|Location2.X=2958.381mil|Location1.Y=2982.564mil|Location2.Y=2993.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2947.131mil|Location2.X=2958.381mil|Location1.Y=2982.564mil|Location2.Y=2993.814mil|Absolute=True">Hole To Hole Clearance Constraint: (0.25mm &lt; 0.254mm) Between Via (0.25mm,0.9mm) from Top Layer to Bottom Layer And Via (-0.25mm,0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2947.131mil|Location2.X=2958.381mil|Location1.Y=2911.698mil|Location2.Y=2922.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2947.131mil|Location2.X=2958.381mil|Location1.Y=2911.698mil|Location2.Y=2922.948mil|Absolute=True">Hole To Hole Clearance Constraint: (0.25mm &lt; 0.254mm) Between Via (0.25mm,-0.9mm) from Top Layer to Bottom Layer And Via (-0.25mm,-0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2966.816mil|Location2.X=2978.066mil|Location1.Y=2982.564mil|Location2.Y=2993.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2966.816mil|Location2.X=2978.066mil|Location1.Y=2982.564mil|Location2.Y=2993.814mil|Absolute=True">Hole To Hole Clearance Constraint: (0.25mm &lt; 0.254mm) Between Via (0.25mm,0.9mm) from Top Layer to Bottom Layer And Via (0.75mm,0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2966.816mil|Location2.X=2978.066mil|Location1.Y=2911.698mil|Location2.Y=2922.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2966.816mil|Location2.X=2978.066mil|Location1.Y=2911.698mil|Location2.Y=2922.948mil|Absolute=True">Hole To Hole Clearance Constraint: (0.25mm &lt; 0.254mm) Between Via (0.25mm,-0.9mm) from Top Layer to Bottom Layer And Via (0.75mm,-0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_odd" onmouseover="className = 'onmouseover_odd'" onmouseout="className = 'onmouseout_odd'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2927.446mil|Location2.X=2938.696mil|Location1.Y=2982.564mil|Location2.Y=2993.814mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2927.446mil|Location2.X=2938.696mil|Location1.Y=2982.564mil|Location2.Y=2993.814mil|Absolute=True">Hole To Hole Clearance Constraint: (0.25mm &lt; 0.254mm) Between Via (-0.25mm,0.9mm) from Top Layer to Bottom Layer And Via (-0.75mm,0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+<tr class="onmouseout_even" onmouseover="className = 'onmouseover_even'" onmouseout="className = 'onmouseout_even'">
+<td class="column1"><a href="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2927.446mil|Location2.X=2938.696mil|Location1.Y=2911.698mil|Location2.Y=2922.948mil|Absolute=True" class="callback"><acronym title="dxpprocess://PCB:Zoom?document=C:\Users\Ocanath\Google Drive\Psyonic\PCB\Altium\Projects\analog-switch-replacement-pcb\pcb.PcbDoc;viewname=PCBEditor;Action=AREA_DYNAMICZOOM|Location1.X=2927.446mil|Location2.X=2938.696mil|Location1.Y=2911.698mil|Location2.Y=2922.948mil|Absolute=True">Hole To Hole Clearance Constraint: (0.25mm &lt; 0.254mm) Between Via (-0.25mm,-0.9mm) from Top Layer to Bottom Layer And Via (-0.75mm,-0.9mm) from Top Layer to Bottom Layer </acronym></a><br></td>
+</tr>
+</table></a><hr color="#EEEEEE"><a href="#top" style="font-size: 0.9em">Back to top</a><br><br></body>
+</html>
