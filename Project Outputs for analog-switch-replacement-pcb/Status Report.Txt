@@ -1,0 +1,20 @@
+Output: Gerber Files
+Type  : Gerber
+From  : Variant [[No Variations]] of Project [analog-switch-replacement-pcb.PrjPcb]
+   Generated File[5arrayBreakaway.GTO]
+   Generated File[5arrayBreakaway.GTS]
+   Generated File[5arrayBreakaway.GTL]
+   Generated File[5arrayBreakaway.GBL]
+   Generated File[5arrayBreakaway.GBS]
+   Generated File[5arrayBreakaway.GM13]
+   Generated File[5arrayBreakaway.GM15]
+   Generated File[5arrayBreakaway.GKO]
+   Generated File[5arrayBreakaway.RUL]
+   Generated File[5arrayBreakaway.EXTREP]
+   Generated File[5arrayBreakaway.REP]
+
+
+Files Generated   : 11
+Documents Printed : 0
+
+Finished Output Generation At 1:08:15 PM On 4/14/2021
